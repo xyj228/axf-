@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/css/main.css' %}">
+{% endblock %}
+
+
+{% block headers %}
+    {{ block.super }}
+    <header>
+    </header>
+{% endblock %}
+
+
+{% block footer %}
+    {{ block.super }}
+
+    <footer>
+        <a href="{% url 'mainapp:home' %}">
+            <dl class="home">
+                <dt >
+                    <span></span>
+                </dt>
+                <dd>首页</dd>
+            </dl>
+        </a>
+
+        <a href="{% url 'mainapp:market' %}">
+            <dl class="market">
+                <dt >
+                    <span></span>
+                </dt>
+                <dd>闪购</dd>
+            </dl>
+        </a>
+
+        <a href="{% url 'mainapp:cart' %}">
+            <dl class="cart">
+                <dt >
+                    <span></span>
+                </dt>
+                <dd>购物车</dd>
+            </dl>
+        </a>
+
+        <a href="{% url 'mainapp:mine' %}">
+            <dl class="mine">
+                <dt >
+                    <span></span>
+                </dt>
+                <dd>我的</dd>
+            </dl>
+        </a>
+    </footer>
+
+{% endblock %}

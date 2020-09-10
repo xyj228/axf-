@@ -1,0 +1,36 @@
+{% extends 'base_main.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/home/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'axf/main/home/css/swiper.css' %}">
+{% endblock %}
+
+{% block title %}
+首页
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/main/home/js/swiper.js' %}"></script>
+    <script type="text/javascript" src="{% static 'axf/main/home/js/swiper.jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'axf/main/home/js/home.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div id="home">
+        <div id="topSwiper" class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for w in wheel %}
+                    <a href="" class="swiper-slide">
+                        <img src="/static{{ w.img }}" alt="">
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/main/market/css/market.css' %}">
+{% endblock %}
+
+{% block title %}
+闪购
+{% endblock %}
