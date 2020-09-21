@@ -6,5 +6,125 @@
 {% endblock %}
 
 {% block title %}
-闪购
+    闪购
 {% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/main/market/js/market.js' %}"></script>
+    <script type="text/javascript" src="{% static 'axf/main/cart/js/cart.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <div id="market">
+        <aside>
+            <ul>
+                {% for foodtype in foodtypes %}
+                    <li>
+                        <a href="{% url 'mainapp:market' %}?typeid={{ foodtype.typeid }}">{{ foodtype.typename }}
+                            {% if typeid == foodtype.typeid %}
+                                <span class="yellowSlide"></span>
+                            {% endif %}
+
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <nav>
+            <ul>
+                <li id="all_sort">
+                    <span>全部分类
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </span>
+                </li>
+                <li id="order_by">
+                   <span>综合排序
+                       <span class="glyphicon glyphicon-triangle-bottom"></span>
+                   </span>
+                </li>
+            </ul>
+        </nav>
+
+        <section>
+            <menu>
+                <ul>
+                    <li>
+                        {% for goods in goods_list %}
+                            <a href="{% url 'mainapp:market' %}">
+                                <img src="{% static goods.productimg %}" alt="">
+                                <span class="shoppingInfo">
+                                    <h6>{{ goods.productlongname }}</h6>
+                                </span>
+                                <p class="detailTag">
+                                    <span style="font-size:40px">精选</span>
+                                    <span style="font-size: 40px"></span>
+                                </p>
+                                <span class="unit" style="font-size: 40px">
+                                    {{ goods.specifics }}
+                                </span>
+                                <div class="price">
+                                    <span style="font-size: 40px">￥{{ goods.price }}</span>
+                                    <s style="font-size: 40px">￥{{ goods.marketprice }}</s>
+                                </div>
+                            </a>
+                            <section style="font-size: 40px">
+                                <button goodsid="{{ goods.id }}" class="subCart">-</button>
+                                <span>0</span>
+                                <button goodsid="{{ goods.id }}" class="addCart">+</button>
+                            </section>
+                        {% endfor %}
+                    </li>
+                </ul>
+                <div id="sort" hidden>
+                    <div>
+                        {% for childtype in childtype_list %}
+                            <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childtypeid={{ childtype.childid }}&sort={{ sort }}">
+
+                                {{ childtype.childcid }}
+                                {% if  childtype.childid  ==  childid %}
+                                    <span style="background-color: green;color: red">{{ childtype.childname }}</span>
+                                {% else %}
+                                    <span>{{ childtype.childname }}</span>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="order" hidden>
+                    <div>
+                        {#                        <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childid={{ childid }}&sort=price&sort1=productnum">#}
+                        {#                            <span>综合查询</span>#}
+                        {#                        </a>#}
+                        {#                        <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childid={{ childid }}&sort=price">#}
+                        {#                            <span>价格升序</span>#}
+                        {#                        </a>#}
+                        {#                        <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childid={{ childid }}&sort=-price">#}
+                        {#                            <span>价格降序</span>#}
+                        {#                        </a>#}
+                        {#                        <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childid={{ childid }}&sort=productnum">#}
+                        {#                            <span>销量升序</span>#}
+                        {#                        </a>#}
+                        {#                        <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childid={{ childid }}&sort=-productnum">#}
+                        {#                            <span>销量降序</span>#}
+                        {#                        </a>#}
+                        {% for order in order_list %}
+                            <a href="{% url 'mainapp:market' %}?typeid={{ typeid }}&childid={{ childid }}&sort={{ order.1 }}">
+                                {% if sort == order.1 %}
+                                    <span style="background-color: greenyellow;color: red">{{ order.0 }}</span>
+                                {% else %}
+                                    <span>{{ order.0 }}</span>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </menu>
+        </section>
+    </div>
+{% endblock %}
+

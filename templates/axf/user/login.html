@@ -1,0 +1,38 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/user/login/login.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="/static/axf/user/login/login.js"></script>
+{% endblock %}
+
+{% block title %}
+    登录
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <div id="login" class="container">
+        <form action="{% url 'userapp:login' %}" method="post">
+            <div style="color: red;font-size: 50px">{{ msg }}</div>
+            <label>用户名</label>
+            <input type="text" name="name" class="form-control" placeholder="请输入用户名">
+            <br>
+            <label>密码</label>
+            <input type="password" name="password" class="form-control" placeholder="请输入密码">
+            <br>
+            <div>
+                <img id="code" src="/userapp/get_code/" alt="">
+            </div>
+            <label>验证码</label>
+            <input type="text" name="icode" class="form-control" placeholder="请输入图中验证码">
+            <br>
+            <button type="submit" class="form-control">登录</button>
+        </form>
+    </div>
+{% endblock %}

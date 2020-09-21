@@ -1,0 +1,51 @@
+{% extends 'base_user.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'axf/user/register/register.css' %}">
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/user/register/register.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+{% block headers %}
+    {{ block.super }}
+    <header></header>
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div id="register" class="container">
+        <form action="{% url 'userapp:register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>用户名</label>
+            <input id="name" type="text" name="name" class="form-control" placeholder="请输入用户名">
+            <div id="one" class="error"></div>
+            <br>
+            <label>邮箱</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="请输入邮箱">
+            <div id="two" class="error"></div>
+            <br>
+            <label>密码</label>
+            <input id="password1" type="password" name="password1" class="form-control" placeholder="请设置密码">
+            <div id="three" class="error"></div>
+            <br>
+            <label>确认密码</label>
+            <input id="password2" type="password" name="password2" class="form-control" placeholder="请再次输入密码">
+            <div id="four" class="error"></div>
+            <br>
+            <label>上传头像</label>
+            <input type="file" name="icons">
+            <br>
+            <button id="submit" type="submit" class="form-control">注册</button>
+        </form>
+    </div>
+{% endblock %}

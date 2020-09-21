@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block title %}
-首页
+    首页
 {% endblock %}
 
 {% block ext_js %}
@@ -31,6 +31,85 @@
                 {% endfor %}
             </div>
             <div class="swiper-pagination"></div>
+        </div>
+
+
+        <div class="topMenu">
+            <nav>
+                <ul>
+                    {% for n in nav %}
+                        <li>
+                            <img src="/static{{ n.img }}" alt="">
+                            <span>{{ n.name }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+
+
+        <div id="swiperMenu" class="swiper-container">
+            <ul class="swiper-wrapper">
+                {% for must in mustbuy %}
+                    <li class="swiper-slide">
+                        <img src="/static{{ must.img }}" alt="">
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="mainInfo">
+            <section>
+                {% for main in mainshow %}
+                    <h3 style="font-size:40px;color: #ff3840">
+                        {{ main.name }}
+                        <a href="">更多></a>
+                        <span></span>
+                    </h3>
+                    <div>
+                        <a href="">
+                            <img src="{% static main.img %}" alt="">
+                        </a>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="">
+                                <img src="{% static main.img1 %}" alt="">
+                                <div class="description">{{ main.longname1 }}</div>
+                                ￥{{ main.price1 }}
+                                <s>￥{{ main.marketprice1 }}</s>
+                            </a>
+                            <button>
+                                <span>+</span>
+                            </button>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="{% static main.img2 %}" alt="">
+                                <div class="description">{{ main.longname2 }}</div>
+                                ￥{{ main.price2 }}
+                                <s>￥{{ main.marketprice2 }}</s>
+                            </a>
+                            <button>
+                                <span>+</span>
+                            </button>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="{% static main.img3 %}" alt="">
+                                <div class="description">{{ main.longname3 }}</div>
+                                ￥{{ main.price3 }}
+                                <s>￥{{ main.marketprice3 }}</s>
+                            </a>
+                            <button>
+                                <span>+</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <br><br><br>
+                {% endfor %}
+            </section>
         </div>
     </div>
 {% endblock %}

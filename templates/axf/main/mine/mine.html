@@ -6,5 +6,109 @@
 {% endblock %}
 
 {% block title %}
-我的
+    我的
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <div id="mine">
+        <div class="fixed">
+            <div id="regis"><a href="{% url 'userapp:register' %}" style="color: white">注册</a></div>
+            {% if user1 %}
+                <span><img id="imgs" src="/static/upload/{{ user1.icon }}" alt=""></span>
+            {% else %}
+                <span class="glyphicon glyphicon-user"></span>
+            {% endif %}
+
+            {% if user1 %}
+                <p><a href="{% url 'userapp:login' %}" style="color: white">{{ user1.name }}</a></p>
+            {% else %}
+                <p><a href="{% url 'userapp:login' %}" style="color: white">未登录</a></p>
+            {% endif %}
+
+            <p>
+                <span class="glyphicon glyphicon-fire"></span>
+                <span>等级</span>
+            </p>
+            <p>
+                <span class="glyphicon glyphicon-heart"></span>商品收藏
+            </p>
+        </div>
+
+
+        <div class="mine">
+            <p>
+                <span>全部订单</span>
+                <a href="">全部订单></a>
+            </p>
+            <div id="nav">
+                <ul>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-usd"></span>
+                            <dt><span>待付款</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            <dt><span>待收货</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <dt><span>待评价</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon glyphicon-retweet"></span>
+                            <dt><span>退款/售后</span></dt>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <menu>
+                <ul>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-bullhorn"></span>
+                            <dt><span>积分商城</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-credit-card"></span>
+                            <dt><span>优惠券</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-import"></span>
+                            <dt><span>收货地址</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-phone-alt"></span>
+                            <dt><span>客服反馈</span></dt>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <span class="glyphicon glyphicon-certificate"></span>
+                            <dt><span>关于我们</span></dt>
+                        </dl>
+                    </li>
+                </ul>
+            </menu>
+            <p>
+                {% if user1 %}
+                    <a href="{% url 'userapp:logout' %}">退出</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
 {% endblock %}
